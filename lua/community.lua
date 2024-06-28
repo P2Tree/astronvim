@@ -12,7 +12,10 @@ return {
   { import = "astrocommunity.motion.flash-nvim" },
   { import = "astrocommunity.git.blame-nvim" },
   { import = "astrocommunity.recipes.telescope-lsp-mappings" },
+  { import = "astrocommunity.indent.mini-indentscope" },
+  { import = "astrocommunity.scrolling.neoscroll-nvim" },
+  { import = "astrocommunity.scrolling.satellite-nvim" },
 
   -- disable default plugins
-  -- { import = "astrocommunity.recipes.disable-tabline" },
+  { import = "astrocommunity.recipes.disable-tabline" },
 }

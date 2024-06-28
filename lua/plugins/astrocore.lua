@@ -80,7 +80,7 @@ return {
         -- search word under cursor without jump to next one
         ["*"] = { "<Cmd> keepjumps normal! mi*`i <CR>" },
         -- delete not cut
-        ["<leader>x"] = { '"_x', desc = "Dlete and not move to register" },
+        ["<leader>x"] = { '"_x', desc = "Delete and not move to register" },
         ["<leader>X"] = { '"_X', desc = "Delete and not move to register" },
         ["<leader>d"] = { '"_d', desc = "Delete and not move to register" },
         ["<leader>D"] = { '"_D', desc = "Delete and not move to register" },
@@ -89,22 +89,38 @@ return {
         ["-"] = { "<Cmd> split <CR>", desc = "Horizontal split window" },
 
         -- navigate buffer tabs
-        ["<tab>"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
-        ["<S-tab>"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
-
-        -- mappings seen under group name "Buffer"
-        ["<Leader>bd"] = {
-          function()
-            require("astroui.status.heirline").buffer_picker(
-              function(bufnr) require("astrocore.buffer").close(bufnr) end
-            )
-          end,
-          desc = "Close buffer from tabline",
-        },
-
+        ["<tab>"] = { "<Cmd>BufferNext<CR>", desc = "Next buffer", silent = true },
+        ["<S-tab>"] = { "<Cmd>BufferPrevious<CR>", desc = "Previous buffer", silent = true },
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
-        -- ["<Leader>b"] = { desc = "Buffers" },
+        ["<Leader>b"] = { desc = " Buffers" },
+        -- mappings seen under group name "Buffer"
+        ["<Leader>b."] = { "<Cmd>BufferNext<CR>", desc = "Next buffer", silent = true },
+        ["<Leader>b,"] = { "<Cmd>BufferPrevious<CR>", desc = "Previous buffer", silent = true },
+        ["<Leader>b>"] = { "<Cmd>BufferMoveNext<CR>", desc = "Move buffer to the next", silent = true },
+        ["<Leader>b<"] = { "<Cmd>BufferMovePrevious<CR>", desc = "Move buffer to the previous", silent = true },
+        ["<leader>b1"] = { "<Cmd>BufferGoto 1<CR>", desc = "Goto the buffer 1", silent = true },
+        ["<leader>b2"] = { "<Cmd>BufferGoto 2<CR>", desc = "Goto the buffer 2", silent = true },
+        ["<leader>b3"] = { "<Cmd>BufferGoto 3<CR>", desc = "Goto the buffer 3", silent = true },
+        ["<leader>b4"] = { "<Cmd>BufferGoto 4<CR>", desc = "Goto the buffer 4", silent = true },
+        ["<leader>b5"] = { "<Cmd>BufferGoto 5<CR>", desc = "Goto the buffer 5", silent = true },
+        ["<leader>b6"] = { "<Cmd>BufferGoto 6<CR>", desc = "Goto the buffer 6", silent = true },
+        ["<leader>b7"] = { "<Cmd>BufferGoto 7<CR>", desc = "Goto the buffer 7", silent = true },
+        ["<leader>b8"] = { "<Cmd>BufferGoto 8<CR>", desc = "Goto the buffer 8", silent = true },
+        ["<leader>b9"] = { "<Cmd>BufferGoto 9<CR>", desc = "Goto the buffer 9", silent = true },
+        ["<leader>b0"] = { "<Cmd>BufferLast<CR>", desc = "Goto the last buffer", silent = true },
+        ["<leader>bp"] = { "<Cmd>BufferPin<CR>", desc = "Pin/Unpin the buffer", silent = true },
+        ["<leader>bc"] = { "<Cmd>BufferClose<CR>", desc = "Close the buffer", silent = true },
+        ["<leader>bs"] = { "<Cmd>BufferPick<CR>", desc = "Select a buffer" },
+        ["<leader>brb"] = { "<Cmd>BufferOrderByBufferNumber<CR>", desc = "Reorder buffer by number", silent = true },
+        ["<leader>brn"] = { "<Cmd>BufferOrderByName<CR>", desc = "Reorder buffer by name", silent = true },
+        ["<leader>brd"] = { "<Cmd>BufferOrderByDirectory<CR>", desc = "Reorder buffer by directory", silent = true },
+        ["<leader>brl"] = { "<Cmd>BufferOrderByLanguage<CR>", desc = "Reorder buffer by language", silent = true },
+        ["<leader>brw"] = {
+          "<Cmd>BufferOrderByWindowNumber<CR>",
+          desc = "Reorder buffer by window number",
+          silent = true,
+        },
 
         -- setting a mapping to false will disable it
         ["<Leader>c"] = false, -- close default force close buffer
@@ -116,6 +132,9 @@ return {
 
         --- Notify ---
         ["<leader>ux"] = { function() require("notify").dismiss() end, desc = "Clean notify messages" },
+
+        --- Telescope ---
+        ["<leader>fs"] = { "<Cmd>Telescope symbols<CR>", desc = "Find symbol code" },
       },
       v = {
         -- jump to head or tail of the line

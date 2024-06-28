@@ -80,7 +80,7 @@ return {
     mappings = {
       n = {
         K = false, -- close default hover
-        ["<Leader>k"] = {
+        ["<Leader>lk"] = {
           function() vim.lsp.buf.hover() end,
           desc = "Hover symbol details",
         },

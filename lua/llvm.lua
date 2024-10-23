@@ -32,6 +32,6 @@ return function()
   vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = { "c,cpp,h,hpp,tablegen,llvm" },
     group = llvmAutoGroup,
-    command = "set expandtab | set tabstop=2 | set softtabstop=2 | set shiftwidth=2 | set textwidth=80 | set colorcolumn=81",
+    command = "set expandtab | set tabstop=2 | set softtabstop=2 | set shiftwidth=2 | set textwidth=100 | set colorcolumn=101",
   })
 end

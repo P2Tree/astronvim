@@ -35,6 +35,10 @@ return {
         autowrite = true,
         grepprg = "rg --vimgrep", --use rg for grep, default is 'grep -n $* /dev/null' if the system don't has rg
         swapfile = false,
+        scrolloff = 5, -- keep visible above and below cursor at all times 
+        sidescrolloff = 40, -- keep columns visible left and right of the cursor at all times 
+        textwidth = 100,
+        colorcolumn = "101",
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
@@ -63,8 +67,11 @@ return {
         -- second key is the lefthand side of the map
 
         --- Basic ---
+        -- insert empty line 
+        ["<leader>k"] = { "O<Esc>", desc = "insert an empty line" },
+        
         -- joint two lines together
-        ["T"] = { "J", desc = "Joint two lines together" },
+        ["<leader>j"] = { "J", desc = "Joint two lines together" },
         -- jump to head or tail of the line
         ["H"] = { "^", desc = "Jump to the head of the line" },
         ["L"] = { "$", desc = "Jump to the tail of the line" },
@@ -75,8 +82,8 @@ return {
         ["<PageUp>"] = { "<C-u>", desc = "Screen half step up scroll", remap = true },
         ["<PageDown>"] = { "<C-d>", desc = "Screen half step down scroll", remap = true },
         -- mouse scroll with wheel
-        ["<ScrollWheelUp>"] = { "<C-y>" },
-        ["<ScrollWheelDown>"] = { "<C-e>" },
+        -- ["<ScrollWheelUp>"] = { "<C-y>" },
+        -- ["<ScrollWheelDown>"] = { "<C-e>" },
         -- search word under cursor without jump to next one
         ["*"] = { "<Cmd> keepjumps normal! mi*`i <CR>" },
         -- delete not cut
@@ -110,7 +117,7 @@ return {
         ["<leader>b9"] = { "<Cmd>BufferGoto 9<CR>", desc = "Goto the buffer 9", silent = true },
         ["<leader>b0"] = { "<Cmd>BufferLast<CR>", desc = "Goto the last buffer", silent = true },
         ["<leader>bp"] = { "<Cmd>BufferPin<CR>", desc = "Pin/Unpin the buffer", silent = true },
-        ["<leader>bc"] = { "<Cmd>BufferClose<CR>", desc = "Close the buffer", silent = true },
+        ["<leader>bd"] = { "<Cmd>BufferDelete<CR>", desc = "Delete the buffer", silent = true },
         ["<leader>bs"] = { "<Cmd>BufferPick<CR>", desc = "Select a buffer" },
         ["<leader>brb"] = { "<Cmd>BufferOrderByBufferNumber<CR>", desc = "Reorder buffer by number", silent = true },
         ["<leader>brn"] = { "<Cmd>BufferOrderByName<CR>", desc = "Reorder buffer by name", silent = true },
@@ -126,6 +133,17 @@ return {
         ["<Leader>c"] = false, -- close default force close buffer
         ["<Leader>o"] = false, -- close default toggle neo-tree
 
+        --- GitSigns ---
+        ["<leader>gh"] = false,
+        ["<leader>gr"] = { "<Cmd>Gitsigns reset_hunk<CR>", desc = "Git reset hunk" },
+        ["<leader>gR"] = { "<Cmd>Gitsigns reset_buffer<CR>", desc = "Git reset buffer" },
+
+        --- GitConflict ---
+        ["[c"] = { "<Cmd>GitConflictPrevConflict<CR>", desc = "Previous conflict" },
+        ["]c"] = { "<Cmd>GitConflictNextConflict<CR>", desc = "Next conflict" },
+        ["<leader>gfn"] = { "<Cmd>GitConflictChooseTheirs<CR>", desc = "Choose new changes" },
+        ["<leader>gfh"] = { "<Cmd>GitConflictChooseOurs<CR>", desc = "Choose head changes" }.
+        
         --- Flash ---
         ["s"] = { function() require("flash").jump() end, desc = "Flash move" },
         ["S"] = { function() require("flash").treesitter() end, desc = "Flash treesitter move" },

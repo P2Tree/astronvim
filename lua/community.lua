@@ -9,6 +9,8 @@ return {
   -- import/override with your plugins folder
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.cpp" },
+  { import = "astrocommunity.pack.bash" },
+  { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.motion.flash-nvim" },
   { import = "astrocommunity.git.blame-nvim" },
   { import = "astrocommunity.recipes.telescope-lsp-mappings" },
